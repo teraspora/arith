@@ -21,6 +21,9 @@ class User:
         self.qs_total = 0
         self.qs_correct = 0
 
+# keep a list of known users
+users = []
+
 class Q:
     """ Q, or Question class represents an arithmetical problem """
     def __init__(self, x = 0, y = 0, op = "+"):
@@ -29,13 +32,29 @@ class Q:
         self.y = y
         self.op = op
 
-@app.route("/", methods = ["GET", "POST"])  
-@app.route("/index", methods = ["GET", "POST"]) 
+@app.route("/", methods = ["GET", "POST"])
 def index():
+    if request.method == "POST":
+        uname = request.form["uname"]
+        userid = next((i for i, user in enumerate(users) if user.name == u), -1)
+        if userid = -1:
+            userid = len(users)
+            user = User(uname)
+            users.append(user)
+        else:
+            user = users[userid]
+        
+
+        return render_template("ask_q.html", uname = u, x = term1, op = op, y = term2)
+
+    return render_template("index.html")
+
+@app.route("/ask_q", methods = ["GET", "POST"]) 
+def ask_q():
     if request.method == "POST":
         u = request.form["user_answer"]
         return render_template("mark.html", uname = "Anon", user_answer = u)  
-    return render_template("index.html", uname = "Anon", x = term1, op = op, y = term2)
+    return render_template("ask_q.html", uname = "Anon", x = term1, op = op, y = term2)
 
 @app.route("/mark", methods = ["GET"])
 def mark(uname, uanswer):
