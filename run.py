@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request # flash
+from flask import Flask, redirect, render_template, request, url_for # flash
 from operator import add, sub, mul, truediv
 import os
 # from datetime import datetime
@@ -34,7 +34,7 @@ class Q:
 def index():
     if request.method == "POST":
         u = request.form["user_answer"]
-        return render_template("mark.html") #, uname = "Anon", user_answer = u)  
+        return render_template("mark.html", uname = "Anon", user_answer = u)  
     return render_template("index.html", uname = "Anon", x = term1, op = op, y = term2)
 
 @app.route("/mark", methods = ["GET"])
