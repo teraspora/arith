@@ -1,18 +1,15 @@
-from flask import Flask, redirect, render_template, request, url_for, flash
+from flask import Flask, redirect, render_template, request, url_for, session
 from operator import add, sub, mul, truediv
 import os
+from random import seed, randint
 # from datetime import datetime
 # import json
 
 app = Flask(__name__)
 app.secret_key = '12676506002A2822HOD940149670../"^$CCC320537618446744074370f95g51616'
-ops = {'+': add, '-': sub, 'x': mul, '/': truediv}
-# initial test data...
-term1 = 6
-term2 = 28
-op = '+'
+ops = [('+', add), ('-', sub), ('x', mul), ('/', truediv)]
 users = []
-
+seed(a=None, version=2)
 # --------------------
 
 class User:
@@ -52,6 +49,13 @@ def ask_qs():
         else:
             user = users[userid]
         # Here calculate values and operation; for now they're fixed;
+        term1 = randint(2, 16)
+        term2 = randint(2, 16)
+        opn = randint(0,2)
+        op = ops[opn][0]
+        opfn = ops[opn][1]
+        answer = opfn(term1, term2)
+        session["answer"] = str(answer)
         return render_template("problems.html", uname = user.name, x = term1, op = op, y = term2)
         
 
@@ -59,7 +63,8 @@ def ask_qs():
 def mark():
     if request.method == "POST":
         ua = request.form["user_answer"]
-        return f'{ua} is {"" if ua == "34" else "in"}correct'
+        answer = session.get("answer", None)
+        return render_template("mark.html", result = f'{ua} is {"" if ua == answer else "in"}correct')
          
 
 
