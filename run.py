@@ -11,7 +11,7 @@ ops = [('+', add), ('-', sub), ('x', mul), ('/', truediv)]
 users = []    # keep a list of known users
 user = ''
 userid = -1
-operand_upper_bound = 16
+operand_upper_bound = 100
 seed(a=None, version=2)
 # --------------------
 
@@ -23,12 +23,12 @@ class User:
         self.qs_total = 0
         self.qs_correct = 0
 
+def getPercentageCorrect(user):
+    return user.qs_correct / user.qs_total * 100
+
 @app.route("/")
 def index():    
     return render_template("index.html")
-
-def getPercentageCorrect(user):
-    return user.qs_correct / user.qs_total * 100
 
 @app.route("/problems", methods = ["GET", "POST"]) 
 def ask_qs():
