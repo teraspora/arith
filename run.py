@@ -23,17 +23,12 @@ class User:
         self.qs_total = 0
         self.qs_correct = 0
 
-# class Q:
-#     """ Q, or Question class represents an arithmetical problem """
-#     def __init__(self, x = 0, y = 0, op = "+"):
-#         """ Create a new sum """
-#         self.x = x
-#         self.y = y
-#         self.op = op
-
 @app.route("/")
 def index():    
     return render_template("index.html")
+
+def getPercentageCorrect(user):
+    return user.qs_correct / user.qs_total * 100
 
 @app.route("/problems", methods = ["GET", "POST"]) 
 def ask_qs():
@@ -49,8 +44,8 @@ def ask_qs():
         # Here calculate values and operation;
         term1 = randint(2, operand_upper_bound)
         term2 = randint(2, operand_upper_bound)
-        opn = randint(0,3)  # Select one of +, -, *, /
-        op = ops[opn][0]
+        opn = randint(0,3)  # Select index for one of +, -, *, /
+        op = ops[opn][0] # get chosen function
         # Handle division by doing pre-multiplication, so we get result castable to integer
         if opn == 3:
             term1 *= term2
@@ -71,8 +66,10 @@ def mark():
         if ua == answer:
             correct = True
             users[userid].qs_correct += 1 
+        percentCorrect = getPercentageCorrect(users[userid])
         return render_template("mark.html",
             result = f'{ua} is {"" if correct else "in"}correct, {users[userid].name}',
-            score = f'Your score is {users[userid].qs_correct} out of {users[userid].qs_total}')
+            score = f'Your score is {users[userid].qs_correct} out of {users[userid].qs_total}',
+            percent = f'Your rating is {percentCorrect}%.')
 
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT', 5000)), debug=True)
