@@ -9,6 +9,8 @@ app = Flask(__name__)
 app.secret_key = '12676506002A2822HOD940149670../"^$CCC320537618446744074370f95g51616'
 ops = [('+', add), ('-', sub), ('x', mul), ('/', truediv)]
 users = []    # keep a list of known users
+user = ''
+userid = -1
 operand_upper_bound = 16
 seed(a=None, version=2)
 # --------------------
@@ -47,7 +49,7 @@ def ask_qs():
         # Here calculate values and operation;
         term1 = randint(2, operand_upper_bound)
         term2 = randint(2, operand_upper_bound)
-        opn = randint(0,2)
+        opn = randint(0,2)  # Select one of +, *, /
         op = ops[opn][0]
         opfn = ops[opn][1]
         answer = opfn(term1, term2)
@@ -59,6 +61,13 @@ def mark():
     if request.method == "POST":
         ua = request.form["user_answer"]
         answer = session.get("answer", None)
-        return render_template("mark.html", result = f'{ua} is {"" if ua == answer else "in"}correct')
+        users[userid].qs_total += 1
+        correct = False            
+        if ua == answer:
+            correct = True
+            users[userid].qs_correct += 1 
+        return render_template("mark.html",
+            result = f'{ua} is {"" if correct else "in"}correct, {users[userid].name}',
+            score = f'Your score is {users[userid].qs_correct} out of {users[userid].qs_total}')
 
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT', 5000)), debug=True)
