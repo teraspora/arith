@@ -74,9 +74,12 @@ def mark():
             correct = True
             users[userid].qs_correct += 1 
         percentCorrect = getPercentageCorrect(users[userid])
+        leader = sorted(users, key=lambda u: getPercentageCorrect(u))[-1]
+
         return render_template("mark.html",
             result = f'{ua} is {"" if correct else "in"}correct, {users[userid].name}',
             score = f'Your score is {users[userid].qs_correct} out of {users[userid].qs_total}',
-            percent = f'Your rating is {percentCorrect}%.')
+            percent = f'Your rating is {percentCorrect}%.',
+            leader_text = f'The leader is {leader.name} with {getPercentageCorrect(leader)} %'            )
 
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT', 5000)), debug=True)
