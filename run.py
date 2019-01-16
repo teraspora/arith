@@ -49,10 +49,15 @@ def ask_qs():
         # Here calculate values and operation;
         term1 = randint(2, operand_upper_bound)
         term2 = randint(2, operand_upper_bound)
-        opn = randint(0,2)  # Select one of +, *, /
+        opn = randint(0,3)  # Select one of +, -, *, /
         op = ops[opn][0]
+        # Handle division by doing pre-multiplication, so we get result castable to integer
+        if opn == 3:
+            term1 *= term2
         opfn = ops[opn][1]
         answer = opfn(term1, term2)
+        if opn == 3:
+            answer = int(answer)    # For division, cast to int, because truediv returns a float
         session["answer"] = str(answer)
         return render_template("problems.html", uname = user.name, x = term1, op = op, y = term2)        
 
