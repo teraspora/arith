@@ -21,13 +21,13 @@ class User:
         self.qs_total = 0
         self.qs_correct = 0
 
-class Q:
-    """ Q, or Question class represents an arithmetical problem """
-    def __init__(self, x = 0, y = 0, op = "+"):
-        """ Create a new sum """
-        self.x = x
-        self.y = y
-        self.op = op
+# class Q:
+#     """ Q, or Question class represents an arithmetical problem """
+#     def __init__(self, x = 0, y = 0, op = "+"):
+#         """ Create a new sum """
+#         self.x = x
+#         self.y = y
+#         self.op = op
 
 @app.route("/")
 def index():    
