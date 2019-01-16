@@ -8,7 +8,8 @@ from random import seed, randint
 app = Flask(__name__)
 app.secret_key = '12676506002A2822HOD940149670../"^$CCC320537618446744074370f95g51616'
 ops = [('+', add), ('-', sub), ('x', mul), ('/', truediv)]
-users = []
+users = []    # keep a list of known users
+operand_upper_bound = 16
 seed(a=None, version=2)
 # --------------------
 
@@ -19,9 +20,6 @@ class User:
         self.name = name
         self.qs_total = 0
         self.qs_correct = 0
-
-# keep a list of known users
-
 
 class Q:
     """ Q, or Question class represents an arithmetical problem """
@@ -35,29 +33,26 @@ class Q:
 def index():    
     return render_template("index.html")
 
-
-
 @app.route("/problems", methods = ["GET", "POST"]) 
 def ask_qs():
     if request.method == "POST":
         uname = request.form["uname"]
         userid = next((i for i, user in enumerate(users) if user.name == uname), -1)
-        if userid == -1:
+        if userid == -1:    # so it's a new user
             userid = len(users)
             user = User(uname)
             users.append(user)
-        else:
+        else:               # so we already know this user
             user = users[userid]
-        # Here calculate values and operation; for now they're fixed;
-        term1 = randint(2, 16)
-        term2 = randint(2, 16)
+        # Here calculate values and operation;
+        term1 = randint(2, operand_upper_bound)
+        term2 = randint(2, operand_upper_bound)
         opn = randint(0,2)
         op = ops[opn][0]
         opfn = ops[opn][1]
         answer = opfn(term1, term2)
         session["answer"] = str(answer)
-        return render_template("problems.html", uname = user.name, x = term1, op = op, y = term2)
-        
+        return render_template("problems.html", uname = user.name, x = term1, op = op, y = term2)        
 
 @app.route("/mark", methods = ["GET", "POST"])
 def mark():
@@ -65,9 +60,5 @@ def mark():
         ua = request.form["user_answer"]
         answer = session.get("answer", None)
         return render_template("mark.html", result = f'{ua} is {"" if ua == answer else "in"}correct')
-         
-
-
-
 
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT', 5000)), debug=True)
