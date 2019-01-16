@@ -24,7 +24,7 @@ In version 0.01 there will be an "Exit" button with suitable functionality.
 
 In version 0.1 the user will be able to select the range.
 
-In version 0.2 we will allow division!   This involves dealing with non-integers, algebraic irrations, protecting against division by zero.
+In version 0.2 we will allow division!   This involves dealing with non-integers, algebraic irrationals, protecting against division by zero.
 
 In version k, where k > 0, the proverbial sky is the limit as k tends to infinity. ;)
 
