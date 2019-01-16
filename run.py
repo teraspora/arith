@@ -30,8 +30,10 @@ def getPercentageCorrect(user):
 def index():    
     return render_template("index.html")
 
+
 @app.route("/problems", methods = ["GET", "POST"]) 
 def ask_qs():
+
     if request.method == "POST":
         uname = request.form["uname"]
         userid = next((i for i, user in enumerate(users) if user.name == uname), -1)
@@ -41,20 +43,25 @@ def ask_qs():
             users.append(user)
         else:               # so we already know this user
             user = users[userid]
-        # Here calculate values and operation;
-        term1 = randint(2, operand_upper_bound)
-        term2 = randint(2, operand_upper_bound)
-        opn = randint(0,3)  # Select index for one of +, -, *, /
-        op = ops[opn][0] # get chosen function
-        # Handle division by doing pre-multiplication, so we get result castable to integer
-        if opn == 3:
-            term1 *= term2
-        opfn = ops[opn][1]
-        answer = opfn(term1, term2)
-        if opn == 3:
-            answer = int(answer)    # For division, cast to int, because truediv returns a float
-        session["answer"] = str(answer)
-        return render_template("problems.html", uname = user.name, x = term1, op = op, y = term2)        
+        session["userid"] = userid # save userid on client
+
+    else:
+        userid = session.get("userid", None)
+        user = users[userid]
+    # Here calculate values and operation;
+    term1 = randint(2, operand_upper_bound)
+    term2 = randint(2, operand_upper_bound)
+    opn = randint(0,3)  # Select index for one of +, -, *, /
+    op = ops[opn][0] # get chosen function
+    # Handle division by doing pre-multiplication, so we get result castable to integer
+    if opn == 3:
+        term1 *= term2
+    opfn = ops[opn][1]
+    answer = opfn(term1, term2)
+    if opn == 3:
+        answer = int(answer)    # For division, cast to int, because truediv returns a float
+    session["answer"] = str(answer)
+    return render_template("problems.html", uname = user.name, x = term1, op = op, y = term2)        
 
 @app.route("/mark", methods = ["GET", "POST"])
 def mark():
