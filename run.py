@@ -82,4 +82,9 @@ def mark():
             percent = f'Your rating is {percentCorrect}%.',
             leader_text = f'The leader is {leader.name} with {getPercentageCorrect(leader)} %'            )
 
-app.run(host=os.getenv('IP'), port=int(os.getenv('PORT', 5000)), debug=True)
+# app.run(host=os.getenv('IP'), port=int(os.getenv('PORT', 5000)), debug=True)
+if __name__ == '__main__':
+    app.run(host=os.environ.get('IP'),
+            port=int(os.environ.get('PORT')),
+            debug=True)
+    

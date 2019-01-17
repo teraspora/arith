@@ -111,3 +111,67 @@ To https://git.heroku.com/arith.git
 Branch 'master' set up to track remote branch 'master' from 'heroku'.
 
 ```
+So, I tried to open the app in a browser.   Result: "Application Error" message from Heroku - page couldn't be served.   Log:
+
+```
+21:58 /arith: 2060$ heroku logs --tail
+2019-01-16T20:58:37.029049+00:00 app[api]: Enable Logplex by user johnlynch.32768@gmail.com
+2019-01-16T21:25:12.056244+00:00 heroku[router]: at=info code=H81 desc="Blank app" method=GET path="/" host=arith.herokuapp.com request_id=9688a23f-e7a9-4813-b613-5df67c40b916 fwd="80.233.31.148" dyno= connect= service= status=502 bytes= protocol=https
+2019-01-16T21:32:22.727543+00:00 app[api]: Release v3 created by user johnlynch.32768@gmail.com
+2019-01-16T21:32:22.747918+00:00 app[api]: Scaled to web@1:Free by user johnlynch.32768@gmail.com
+2019-01-16T21:32:32.804352+00:00 app[web.1]: * Debugger is active!
+2019-01-16T21:32:32.805443+00:00 app[web.1]: * Debugger PIN: 960-713-823
+2019-01-16T21:32:36.000000+00:00 app[api]: Build succeeded
+2019-01-16T21:33:30.715437+00:00 heroku[web.1]: Error R10 (Boot timeout) -> Web process failed to bind to $PORT within 60 seconds of launch
+2019-01-16T21:33:30.715437+00:00 heroku[web.1]: Stopping process with SIGKILL
+2019-01-16T21:33:30.785251+00:00 heroku[web.1]: Process exited with status 137
+2019-01-16T21:33:30.881992+00:00 heroku[web.1]: State changed from crashed to starting
+2019-01-16T21:33:36.542720+00:00 heroku[web.1]: Starting process with command `python3 run.py`
+2019-01-16T21:33:38.407562+00:00 app[web.1]: * Serving Flask app "run" (lazy loading)
+2019-01-16T21:33:38.407583+00:00 app[web.1]: * Environment: production
+2019-01-16T21:33:38.407629+00:00 app[web.1]: WARNING: Do not use the development server in a production environment.
+2019-01-16T21:33:38.407669+00:00 app[web.1]: Use a production WSGI server instead.
+2019-01-16T21:33:38.407697+00:00 app[web.1]: * Debug mode: on
+2019-01-16T21:33:38.425706+00:00 app[web.1]: * Running on http://127.0.0.1:12162/ (Press CTRL+C to quit)
+2019-01-16T21:33:38.426543+00:00 app[web.1]: * Restarting with stat
+2019-01-16T21:33:38.749701+00:00 app[web.1]: * Debugger is active!
+2019-01-16T21:33:38.751246+00:00 app[web.1]: * Debugger PIN: 310-516-164
+2019-01-16T21:34:36.926578+00:00 heroku[web.1]: Error R10 (Boot timeout) -> Web process failed to bind to $PORT within 60 seconds of launch
+2019-01-16T21:34:36.926654+00:00 heroku[web.1]: Stopping process with SIGKILL
+2019-01-16T21:34:37.003507+00:00 heroku[web.1]: Process exited with status 137
+2019-01-16T21:53:52.987682+00:00 heroku[web.1]: State changed from crashed to starting
+2019-01-16T21:53:57.561585+00:00 heroku[web.1]: Starting process with command `python3 run.py`
+2019-01-16T21:54:58.096583+00:00 heroku[web.1]: State changed from starting to crashed
+2019-01-16T21:54:57.977555+00:00 heroku[web.1]: Error R10 (Boot timeout) -> Web process failed to bind to $PORT within 60 seconds of launch
+2019-01-16T21:54:57.977719+00:00 heroku[web.1]: Stopping process with SIGKILL
+2019-01-16T21:54:58.079550+00:00 heroku[web.1]: Process exited with status 137
+2019-01-16T21:57:43.000000+00:00 app[api]: Build started by user johnlynch.32768@gmail.com
+2019-01-16T21:58:06.116939+00:00 app[api]: Deploy 17aecc4f by user johnlynch.32768@gmail.com
+2019-01-16T21:58:06.116939+00:00 app[api]: Release v4 created by user johnlynch.32768@gmail.com
+2019-01-16T21:58:07.402778+00:00 heroku[web.1]: State changed from crashed to starting
+2019-01-16T21:58:15.446732+00:00 app[web.1]: * Serving Flask app "run" (lazy loading)
+2019-01-16T21:58:15.446754+00:00 app[web.1]: * Environment: production
+2019-01-16T21:58:15.446800+00:00 app[web.1]: WARNING: Do not use the development server in a production environment.
+2019-01-16T21:58:15.446870+00:00 app[web.1]: Use a production WSGI server instead.
+2019-01-16T21:58:15.446917+00:00 app[web.1]: * Debug mode: on
+2019-01-16T21:58:15.525680+00:00 app[web.1]: * Running on http://127.0.0.1:35684/ (Press CTRL+C to quit)
+2019-01-16T21:58:15.530464+00:00 app[web.1]: * Restarting with stat
+2019-01-16T21:58:15.795617+00:00 app[web.1]: * Debugger is active!
+2019-01-16T21:58:15.796647+00:00 app[web.1]: * Debugger PIN: 254-766-664
+2019-01-16T21:58:19.000000+00:00 app[api]: Build succeeded
+2019-01-16T21:59:13.659184+00:00 heroku[web.1]: State changed from starting to crashed
+2019-01-16T21:59:17.123915+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=arith.herokuapp.com request_id=e2f52003-b11f-4a47-8364-a6afb3c67e7a fwd="80.233.31.148" dyno= connect= service= status=503 bytes= protocol=https
+```
+Tried again, and "Method Not Allowed" displayed.
+
+I think I need to set the port and IP address, adjust the app.run() statement.
+
+Consulted my notes.
+
+```
+22:24 /arith: 2061$ heroku ps:scale web=1
+Scaling dynos... done, now running web at 1:Free
+00:16 /arith: 2062$ 
+```
+Updated run.py to get IP & PORT.
+
