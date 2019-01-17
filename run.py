@@ -31,12 +31,11 @@ def getPercentageCorrect(user):
 def index():    
     return render_template("index.html")
 
-
 @app.route("/problems", methods = ["GET", "POST"]) 
 def ask_qs():
 
     if request.method == "POST":
-        if request.form["submit_button"] == 'Log out':
+        if request.form["logout_button"] == 'Log out':
             session["userid"] = -1
             return render_template("index.html")        
         uname = request.form["uname"]
