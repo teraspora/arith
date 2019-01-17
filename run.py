@@ -33,24 +33,23 @@ def index():
 
 @app.route("/problems", methods = ["GET", "POST"]) 
 def ask_qs():
-
+    if request.method == "GET" and request.form.get("logout_button"):
+        session["userid"] = -1
+        return render_template("index.html")        
+        
     if request.method == "POST":
         uname = request.form["uname"]
         userid = next((i for i, user in enumerate(users) if user.name == uname), -1)
+        
         if userid == -1:    # so it's a new user
             userid = len(users)
             user = User(uname)
             users.append(user)
         else:               # so we already know this user
             user = users[userid]
+
         session["userid"] = userid # save userid on client
-    elif request.method == "GET":
-        if request.form.get("logout_button"):
-            session["userid"] = -1
-            return render_template("index.html")        
-        userid = session.get("userid", None)
-        user = users[userid]
-        
+                
     # Handle GET method, when coming from mark.html > Next Problem button
     # Here calculate values and operation;
     term1 = randint(2, operand_upper_bound)
