@@ -1,11 +1,17 @@
-<html>
-   <body>
-   
-      <form action = "/problems" method = "POST">
+{% extends "layout.html" %}
+
+{% block title %}
+	What's your name?
+{% endblock %}
+
+{% block head %}
+  	{{ super() }}
+{% endblock %}
+
+{% block content %}
+   <form action = "/problems" method = "POST">
          <p><h2>What's your name</h2></p>
          <p><input autofocus type = "text" name = "uname"/></p>
          <p><input type = "submit" value = "Login"/></p>
       </form>
-      
-   </body>
-</html>
+{% endblock %}
