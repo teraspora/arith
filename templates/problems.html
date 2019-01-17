@@ -1,15 +1,17 @@
-<html>
-	<head>
-		<title>
-			Arith
-		</title>
-	</head>
-	<body>
-		<h1>Hello {{ uname }}, this is Arith!   Test your arithmetic!</h1>
+{% extends "layout.html" %}
+
+{% block title %}
+	Arith
+{% endblock %}
+
+{% block head %}
+  	{{ super() }}
+{% endblock %}
+
+{% block content %}
+   <h1>Hello {{ uname }}, this is Arith!   Test your arithmetic!</h1>
 		<form action="/mark" method="POST">
 		  {{ x }} {{ op }} {{ y }} = <input autofocus type="number" name="user_answer"/>
 		  <input type="submit" value="Check your answer"/>
 		</form>
-
-	</body>
-</html>
+{% endblock %}
