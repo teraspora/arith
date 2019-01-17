@@ -67,6 +67,7 @@ def ask_qs():
 @app.route("/mark", methods = ["GET", "POST"])
 def mark(): # Inform the user whether they're correct and display scores
     if request.method == "POST":
+        formatter = '%.2f'
         ua = request.form["user_answer"]
         answer = session.get("answer", None)
         userid = session.get("userid", None)
@@ -75,15 +76,14 @@ def mark(): # Inform the user whether they're correct and display scores
         if ua == answer:
             correct = True
             users[userid].qs_correct += 1 
-        percentCorrect = getPercentageCorrect(users[userid])
+        percentCorrect = formatter % getPercentageCorrect(users[userid])
         leader = sorted(users, key=lambda u: getPercentageCorrect(u))[-1]
-
         return render_template("mark.html",
             result = f'{ua} is {"" if correct else "in"}correct, {users[userid].name}',
             feedback = 'Well done!' if correct else f'Sorry. :( The answer is in fact {answer}.',
             score = f'Your score is {users[userid].qs_correct} out of {users[userid].qs_total}',
             percent = f'Your rating is {percentCorrect}%.',
-            leader_text = f'The leader is {leader.name} with {getPercentageCorrect(leader)}%' + \
+            leader_text = f'The leader is {leader.name} with {formatter % getPercentageCorrect(leader)}%' + \
                 f' ({leader.qs_correct} out of {leader.qs_total}).')
 
 # app.run(host=os.getenv('IP'), port=int(os.getenv('PORT', 5000)), debug=True)
