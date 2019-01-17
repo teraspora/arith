@@ -65,7 +65,7 @@ def ask_qs():
         if opn == 3:
             answer = int(answer)    # For division, cast to int, because truediv returns a float
         session["answer"] = str(answer)
-        return render_template("problems.html", uname = user.name, x = term1, op = op, y = term2)        
+    return render_template("problems.html", uname = user.name, x = term1, op = op, y = term2)        
 
 @app.route("/mark", methods = ["GET", "POST"])
 def mark(): # Inform the user whether they're correct and display scores
