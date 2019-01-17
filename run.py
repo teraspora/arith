@@ -64,7 +64,7 @@ def ask_qs():
     return render_template("problems.html", uname = user.name, x = term1, op = op, y = term2)        
 
 @app.route("/mark", methods = ["GET", "POST"])
-def mark():
+def mark(): # Inform the user whether they're correct and display scores
     if request.method == "POST":
         ua = request.form["user_answer"]
         answer = session.get("answer", None)
@@ -79,6 +79,7 @@ def mark():
 
         return render_template("mark.html",
             result = f'{ua} is {"" if correct else "in"}correct, {users[userid].name}',
+            feedback = 'Well done!' if correct else f'Sorry. :( The answer is in fact {answer}.',
             score = f'Your score is {users[userid].qs_correct} out of {users[userid].qs_total}',
             percent = f'Your rating is {percentCorrect}%.',
             leader_text = f'The leader is {leader.name} with {getPercentageCorrect(leader)} %'            )
