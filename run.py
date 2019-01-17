@@ -36,6 +36,9 @@ def index():
 def ask_qs():
 
     if request.method == "POST":
+        if request.form["submit_button"] == 'Log out':
+            session["userid"] = -1
+            return render_template("index.html")        
         uname = request.form["uname"]
         userid = next((i for i, user in enumerate(users) if user.name == uname), -1)
         if userid == -1:    # so it's a new user
@@ -67,9 +70,6 @@ def ask_qs():
 @app.route("/mark", methods = ["GET", "POST"])
 def mark(): # Inform the user whether they're correct and display scores
     if request.method == "POST":
-        if request.form["submit_button"] == 'Log out':
-            session["userid"] = -1
-            return render_template("index.html")        
         formatter = '%.2f'
         ua = request.form["user_answer"]
         answer = session.get("answer", None)
