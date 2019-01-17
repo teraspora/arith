@@ -35,7 +35,7 @@ def index():
 def ask_qs():
 
     if request.method == "POST":
-        if request.form.get["logout_button"]:
+        if request.form.get("logout_button"):
             session["userid"] = -1
             return render_template("index.html")        
         uname = request.form["uname"]
