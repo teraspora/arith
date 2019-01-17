@@ -1,19 +1,21 @@
-<html>
-	<head>
-		<title>
-			Check your answer
-		</title>
-	</head>
-	<body>
-		<h1>{{ result }}</h1>
-		<h1>{{ feedback }}</h1>
-		<h2>{{ score }}</h2>
-		<h2>{{ percent }}</h2>
-		<h2>{{ leader_text }}</h2>
-		<form action="/problems" method="GET">
-		    <input autofocus type="submit" name = "submit_button" value="Next problem"/>
-		    <input autofocus type="submit" name = "logout_button" value="Log out"/>
-		</form>
+{% extends "layout.html" %}
 
-	</body>
-</html>
+{% block title %}
+	Arith - Check your answer
+{% endblock %}
+
+{% block head %}
+  	{{ super() }}
+{% endblock %}
+
+{% block content %}
+   <h1>{{ result }}</h1>
+   <h1>{{ feedback }}</h1>
+   <h2>{{ score }}</h2>
+   <h2>{{ percent }}</h2>
+   <h2>{{ leader_text }}</h2>
+   <form action="/problems" method="GET">
+       <input autofocus type="submit" name = "submit_button" value="Next problem"/>
+       <input type="submit" name = "logout_button" value="Log out"/>
+   </form>
+{% endblock %}
