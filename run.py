@@ -67,7 +67,7 @@ def ask_qs():
 @app.route("/mark", methods = ["GET", "POST"])
 def mark(): # Inform the user whether they're correct and display scores
     if request.method == "POST":
-        if request.form['submit_button'] == 'Log out':
+        if request.form["submit_button"] == 'Log out':
             session["userid"] = -1
             return render_template("index.html")        
         formatter = '%.2f'
