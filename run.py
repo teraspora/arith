@@ -49,6 +49,10 @@ def ask_qs():
             user = users[userid]
 
         session["userid"] = userid # save userid on client
+    
+    # if coming from "Next problem" button in mark.html:
+    userid = session.get("userid", None)
+    user = users[userid]
                 
     # Handle GET method, when coming from mark.html > Next Problem button
     # Here calculate values and operation;
