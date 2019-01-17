@@ -45,7 +45,7 @@ def ask_qs():
             user = users[userid]
         session["userid"] = userid # save userid on client
 
-    else:
+    else:   # Handle GET method, when coming from mark.html > Next Problem button
         userid = session.get("userid", None)
         user = users[userid]
     # Here calculate values and operation;
@@ -68,6 +68,7 @@ def mark():
     if request.method == "POST":
         ua = request.form["user_answer"]
         answer = session.get("answer", None)
+        userid = session.get("userid", None)
         users[userid].qs_total += 1
         correct = False            
         if ua == answer:
@@ -87,4 +88,3 @@ if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
             debug=True)
-    
