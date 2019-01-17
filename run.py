@@ -84,7 +84,7 @@ def mark(): # Inform the user whether they're correct and display scores
             score = f'Your score is {users[userid].qs_correct} out of {users[userid].qs_total}',
             percent = f'Your rating is {percentCorrect}%.',
             leader_text = f'The leader is {leader.name} with {getPercentageCorrect(leader)}%' + \
-                f' ({leader.qs_correct} out of {leader.qs_total}.')
+                f' ({leader.qs_correct} out of {leader.qs_total}).')
 
 # app.run(host=os.getenv('IP'), port=int(os.getenv('PORT', 5000)), debug=True)
 if __name__ == '__main__':
