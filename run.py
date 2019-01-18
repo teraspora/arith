@@ -14,7 +14,7 @@ userid = -1
 operand_upper_bound = 100
 seed(a=None, version=2)
 formatter = '%.2f'
-        
+
 # --------------------
 
 class User:
@@ -86,7 +86,8 @@ def mark(): # Inform the user whether they're correct and display scores
             correct = True
             users[userid].qs_correct += 1 
         percentCorrect = formatter % getPercentageCorrect(users[userid])
-        leader = sorted(users, key=lambda u: getPercentageCorrect(u))[-1]
+        users = sorted(users, key=lambda u: getPercentageCorrect(u), reverse = True)
+        leader = users[0]
         return render_template("mark.html",
             result = f'{ua} is {"" if correct else "in"}correct, {users[userid].name}.',
             feedback = 'Well done!' if correct else f'Sorry. :( The answer is in fact {answer}.',
