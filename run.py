@@ -13,6 +13,8 @@ user = ''
 userid = -1
 operand_upper_bound = 100
 seed(a=None, version=2)
+formatter = '%.2f'
+        
 # --------------------
 
 class User:
