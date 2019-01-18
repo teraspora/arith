@@ -18,4 +18,14 @@
        <input autofocus type="submit" name = "submit_button" value="Next problem"/>
        <input type="submit" name = "logout_button" value="Log out"/>
    </form>
+   <table border = 5>
+       {% for user in userList.iteritems() %}
+          <tr>
+             <th> {{ user.name }} </th>
+             <td> {{ user.qs_total }} </td>
+             <td> {{ user.qs_correct }} </td>
+             <td> {{ formatter % getPercentageCorrect(user) }} </td>
+          </tr>
+       {% endfor %}
+    </table>
 {% endblock %}
