@@ -2,6 +2,7 @@
         box-sizing: border-box;
         border-radius: 0.5vw;
         text-decoration: none;
+        --light-text-col: #fff6e5;
 }
 
 body, html {
@@ -18,4 +19,26 @@ body, html {
     padding: 1em;
 }
 
+.btn {
+    font-size: 1vw;
+    background-color: black;
+    color: var(--light-text-col);
+    width: 10vw;
+    height: auto;
+    padding: 3px 3px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 0 1px 1px;
+    cursor: pointer;
+    margin: 1px 1px 1px 1px;
+    transition: transform 0.5s;
+    border: 4px groove var(--light-text-col);
+    border-radius: 5px;
+}
+
+.btn:hover {
+    transform: scale(1.04);
+    filter: invert(100%);   /* switch black and white text */
+    border: 2px solid white;  
+}
 
