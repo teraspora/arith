@@ -24,7 +24,7 @@
              <th> {{ user.name }} </th>
              <td> {{ user.qs_total }} </td>
              <td> {{ user.qs_correct }} </td>
-             <td> {{ formatter % getPercentageCorrect(user) }} </td>
+             <td> {{ formatter % getPercentageCorrect(user)\% }} </td>
           </tr>
        {% endfor %}
     </table>
