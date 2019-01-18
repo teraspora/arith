@@ -19,7 +19,7 @@
        <input type="submit" name = "logout_button" value="Log out"/>
    </form>
    <table border = 5>
-       {% for user in user_list.iteritems() %}
+       {% for user in user_list %}
           <tr>
              <th> {{ user.name }} </th>
              <td> {{ user.qs_total }} </td>
