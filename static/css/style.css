@@ -91,6 +91,10 @@ tr:first-child {
     border: 2px solid var(--btn-col);  
 }
 
+.footer {
+    bottom: 0;
+}
+
 /*
 Font Awesome styling for social icons:
 */
