@@ -8,6 +8,8 @@
     --h1-col: #5dbfff;
     --dark-bkg-col: #00162c;
     --bright-border-col: #e99536;
+    --go-col: #00b3b7;
+    --stop-col: #eda2ab;
 }
 
 body, html {
@@ -93,4 +95,12 @@ tr:first-child {
     transform: scale(1.04);
     filter: invert(100%);   /* switch black & white text */
     border: 2px solid var(--btn-col);  
+}
+
+#btn-next {
+    color: var(--go-col);
+}
+
+#btn-logout {
+    color: var(--stop-col);
 }
