@@ -133,7 +133,7 @@ tr:first-child {
     color: var(--stop-col);
 }
 
-@media screen and (max-width: 767px) and (orientation:portrait) {
+@media screen and (max-width: 767px) {
 
     .feedback, .scoreboard, .scoreboard * {
         font-size: 3vw;
@@ -141,6 +141,8 @@ tr:first-child {
     }
 
     .btn {
-        height: 3vh;
+        width: 80vmin;
+        height: auto;
+        font-size: 3vw;
     }
 }
