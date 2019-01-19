@@ -86,7 +86,7 @@ def mark(): # Inform the user whether they're correct and display scores
             correct = True
             users[userid].qs_correct += 1 
         percentCorrect = formatter % getPercentageCorrect(users[userid])
-        users_sorted = sorted(users, key=lambda u: getPercentageCorrect(u))
+        users_sorted = sorted(users, key=lambda u: getPercentageCorrect(u), reverse = True)
         leader = users_sorted[0]
         return render_template("mark.html",
             result = f'{ua} is {"" if correct else "in"}correct, {users[userid].name}.',
