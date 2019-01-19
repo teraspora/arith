@@ -28,6 +28,10 @@ body, html {
     grid-template-columns: repeat(auto-fit, minmax(768px, 1fr));
     grid-template-rows: 1fr 1fr;
     grid-gap: 2vmax;
+    justify-items: center;
+    align-items: center;
+    justify-content: space-around;
+    align-content: space-around;
 }
 
 .feedback, .scoreboard {
