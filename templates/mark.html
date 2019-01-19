@@ -10,7 +10,7 @@
 
 {% block content %}
    <main class="main">
-    
+
     <section class="feedback">
        <h1>{{ result }}</h1>
        <h1>{{ feedback }}</h1>
@@ -25,14 +25,20 @@
 
     <aside class="scoreboard">
       <table border = 5>
-         {% for user in user_list %}
-            <tr>
-               <th> {{ user.name }} </th>
-               <td> {{ user.qs_total }} </td>
-               <td> {{ user.qs_correct }} </td>
-               <td> {{ formatter % getPercentageCorrect(user) }} {{ '%' }} </td>
-            </tr>
-         {% endfor %}
+        <tr>
+           <th> Name </th>
+           <td> Answers </td>
+           <td> Correct </td>
+           <td> Percentage </td>
+        </tr>
+        {% for user in user_list %}
+           <tr>
+              <th> {{ user.name }} </th>
+              <td> {{ user.qs_total }} </td>
+              <td> {{ user.qs_correct }} </td>
+              <td> {{ formatter % getPercentageCorrect(user) }} {{ '%' }} </td>
+           </tr>
+        {% endfor %}
       </table>
     </aside>
 
