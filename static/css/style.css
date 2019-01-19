@@ -187,6 +187,10 @@ tr:first-child {
     color: var(--go-col);
 }
 
+.btn-login {
+    justify-self: center;
+}
+
 #btn-logout {
     color: var(--stop-col);
 }
