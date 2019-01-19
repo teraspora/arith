@@ -9,6 +9,7 @@ app = Flask(__name__)
 app.secret_key = '12676506002A2822HOD940149670../"^$CCC320537618446744074370f95g51616'
 ops = [('+', add), ('-', sub), ('x', mul), ('/', truediv)]
 users = []    # keep a list of known users
+leaders = []
 user = ''
 userid = -1
 operand_upper_bound = 100
@@ -87,14 +88,28 @@ def mark(): # Inform the user whether they're correct and display scores
             users[userid].qs_correct += 1 
         percentCorrect = formatter % getPercentageCorrect(users[userid])
         users_sorted = sorted(users, key=lambda u: getPercentageCorrect(u), reverse = True)
-        leader = users_sorted[0]
+        leaders[0] = users_sorted[0]
+        leader_percentage = getPercentageCorrect(leaders[0])
+        # Check for multiple leaders
+        for i in range(1, len(users) - 1):
+            if getPercentageCorrect(users[i]) < leader_percentage:
+                break;
+            leaders.append(users[i])
+
+        text = leaders[0].name
+        if len(leaders) > 1:
+            for vin in leaders[1:]:
+                text += f' and {vin.name} '
+            text += "are leading with "
+        else:
+            text += " is leading with"
+
         return render_template("mark.html",
             result = f'{ua} is {"" if correct else "in"}correct, {users[userid].name}.',
             feedback = 'Well done!' if correct else f'Sorry. :( The answer is in fact {answer}.',
             score = f'Your score is {users[userid].qs_correct} out of {users[userid].qs_total}.',
             percent = f'Your rating is {percentCorrect}%.',
-            leader_text = f'The leader is {leader.name} with {formatter % getPercentageCorrect(leader)}%' + \
-                f' ({leader.qs_correct} out of {leader.qs_total}).',
+            leader_text = text + f'{formatter % getPercentageCorrect(leader)}%',
             user_list = users_sorted)
 
 # app.run(host=os.getenv('IP'), port=int(os.getenv('PORT', 5000)), debug=True)
