@@ -51,7 +51,7 @@ body, html {
 }
 
 .feedback {
-    color: var(--medium-light-text-col);
+    color: var(--bright-border-col);
 }
 
 .sum, .answer, .name {
@@ -83,7 +83,7 @@ h1, h2 {
 }
 
 #result {
-    color: var(--bright-border-col);
+    color: var(--medium-light-text-col);
 }
  
 tr:first-child {
