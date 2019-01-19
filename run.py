@@ -36,7 +36,7 @@ def index():
 
 @app.route("/problems", methods = ["GET", "POST"]) 
 def ask_qs():
-    if request.method == "GET" and (request.args.get("logout_button")  or userid is None):
+    if request.method == "GET" and (request.args.get("logout_button")  or session.get("userid", None) is None):
         session["userid"] = -1
         return redirect(url_for("index"))        
         
