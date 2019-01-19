@@ -3,22 +3,22 @@
     border-radius: 0.5vw;
     text-decoration: none;
     --light-text-col: #ffddbb;
-    --bkg-col: #1a000e;
+    --bkg-col: #98c4ff;
     --btn-col: #000314;
     --h1-col: #5dbfff;
-    --pale-bkg-col: #98c4ff;
+    --dark-bkg-col: #00162c;
     --bright-border-col: #e99536;
 }
 
 body, html {
     margin: 0;
     padding: 0;
-    background-color: var(--pale-bkg-col);
+    background-color: var(--bkg-col);
     font-family: sans-serif;
 }
 
 #content {   
-    background-color: var(--pale-bkg-col)         
+    background-color: var(--bkg-col)         
     color: var(--light-text-col);
     padding: 1vh 1vw;
 }
