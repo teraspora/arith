@@ -7,12 +7,13 @@
     --btn-col: #000314;
     --h1-col: #5dbfff;
     --pale-bkg-col: #98c4ff;
+    --bright-border-col: #e99536;
 }
 
 body, html {
     margin: 0;
     padding: 0;
-    background-color: black;
+    background-color: --pale-bkg-col;
     font-family: sans-serif;
 }
 
@@ -27,7 +28,7 @@ body, html {
     grid-template-columns: repeat(auto-fit, minmax(400px 1fr));
     grid-auto-rows: 1fr;
     grid-gap: 2vmax;
-    border: 5px inset var(--h1-col);
+    border: 5px inset var(--bright-border-col);
 }
 
 .feedback, .scoreboard {
@@ -50,7 +51,6 @@ body, html {
 
 h1 {
     font-size: 2vmax;
-    colo
 }
 
 
