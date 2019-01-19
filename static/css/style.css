@@ -2,9 +2,10 @@
     box-sizing: border-box;
     border-radius: 0.5vw;
     text-decoration: none;
-    --light-text-col: #fff6e5;
+    --light-text-col: #ffddbb;
     --bkg-col: #1a000e;
     --btn-col: #000314;
+    --h1-col: #5dbfff;
 }
 
 body, html {
@@ -22,8 +23,8 @@ body, html {
 
 .main {
     display: grid;
-    /*grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;*/
+    grid-template-columns: repeat(auto-fit, minmax(50vw, 1fr);
+    grid-auto-rows: 1fr;
     grid-gap: 2vmax;
 }
 
@@ -45,7 +46,10 @@ body, html {
     padding: 1vh 1vw;
 }
 
-
+h1 {
+    font-size: 2vmax;
+    colo
+}
 
 
 
