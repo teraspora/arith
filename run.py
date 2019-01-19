@@ -36,14 +36,12 @@ def index():
 
 @app.route("/problems", methods = ["GET", "POST"]) 
 def ask_qs():
-    if request.method == "GET" and request.args.get("logout_button"):
+    if request.method == "GET" and (request.args.get("logout_button")  or userid is None):
         session["userid"] = -1
         return redirect(url_for("index"))        
         
     if request.method == "POST":
-        if userid == None:
-            return redirect(url_for("index"))
-    
+        
         uname = request.form["uname"]
         userid = next((i for i, user in enumerate(users) if user.name == uname), -1)
         
@@ -85,7 +83,7 @@ def mark(): # Inform the user whether they're correct and display scores
         ua = request.form["user_answer"]
         answer = session.get("answer", None)
         userid = session.get("userid", None)
-        if userid == None:
+        if userid is None:
             return redirect(url_for("index"))
         users[userid].qs_total += 1
         correct = False            
