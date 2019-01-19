@@ -1,5 +1,44 @@
 # Arith
 
+## UX
+
+The project comprises a simple app that gets users practising their mental arithmetic in competition with others.
+
+There is these days much talk of "brain training" and more generally the benefit of keeping cerebral neurons as busy as possible.   Mental arithmetic is a great exercise for the brain and with the added feature of being in competition, even if informal, it can be a relaxing and entertaining activity to while away a few minutes between meetings, on the bus, in breaks between spells of physical work etc.
+
+Of course a user can cheat in many ways from pen and paper to Google, but I'm unaware of any research showing benefits for cheating...
+
+## Features
+
+The user is initially greeted by a simple login page where s/he enters her/his name and clicks a Login button or presses `Enter`.
+
+S/he is then taken to a page with an arithmetical sum to be solved.   The user enters the answer in a box and clicks "Check" or presses `Enter`.
+
+They are then taken to a page where they are congratulated or commiserated with, depending on whether their answer was correct.   Personal statistics are shown and the leaderboard is displayed to the user, showing all users who have been logged on to the current server instance along with their scores and percentage ratings.   The user is informed of the name/s of the leader/s, determined by percentage correct out of questions answered.
+
+At this point the user may click the "Next Problem" button, and this button is very slightly scaled up in size in order to subtly encourage the user do do just that.
+
+They also have, though, a choice to click the "Logout" button, at which point they will be returned to the Login Page, their session user token destroyed and another user is free to log in.
+
+Overall the interface is completely intuitive and the user should need no guidance about how to play.
+
+### Features Left to Implement
+
+- A logo
+
+- A header and footer with my social media links, website and contact details.
+
+- Display each sum on a face of a cube seen in 3d and in perspective.   Transition to a new sum by rotation to another face.   I think this is all doable in CSS without any Javascript.   I have made a rotating cube with text on so should be able to integrate this into the current app but for now I am keeping it simple as that is part of its attraction.
+
+## Technologies Used
+
+- [Python](https://www.python.org/) for all backend code;
+- [Flask](http://flask.pocoo.org/) for routing and views;
+- [Heroku](https://devcenter.heroku.com/) for deployment and testing;
+- [Jinja](http://jinja.pocoo.org/) for templating;
+- [Sublime Text](https://www.sublimetext.com/) for coding.
+
+
 ## Specification
 
 This application is designed to fulfil the requirements of the third milestone project of the Code Institute Full Stack Developer course 2018.
@@ -16,22 +55,11 @@ The app will store an identifying userid and also the user's latest answer as a 
 
 The app will use the native random function to generate operands and operator to form a sum to be computed, e.g. ("28 x 13 = ? ")
 
-We define a range for the operands (2 to n), initially fixed, later user-set.
+We define a range for the operands (2 to n), fixed at present to (2, 100).
 
 We use an <input> element on the page for the user to type in their answer.  They will then be congratulated or commiserated with and subsequently will proceed to attempting to answer the next randomly-generated arithmetic problem.   Their score and relative standing will be updated.
 
-
-## Testing
-
-Once the basic framework is set up, a TDD approach will be adopted.
-
-Tests will be created to check the logic regarding validation of user input, checking arithmetic operations and maintaining and updating user data.
-
-The simple interface will lend itself to responsive design, so the application will be usable on mobile without difficulty.   I note, though, that the more features I introduce, the more danger of the UI becoming cluttered.
-
-Manual tests on different devices will also be necessary.
-
-## Design & Development
+## Design, Development & Testing
 
 - First, I conceived the basic idea of randomly generated arithmetical problems as seeming to fulfil the project requirements.
 
@@ -39,7 +67,25 @@ Manual tests on different devices will also be necessary.
 
 - Small changes were contained in separate commits with informative explanatory messages as far as I could manage in order to maintain a clear and detailed version control history.
 
-- Then, prior to testing and styling, I deployed the app to Heroku as documented hereunder.
+- Then, prior to styling and testing , I deployed the app to Heroku as documented hereunder.
+
+I did not have a clear idea of how I wanted the app to look, so I just started styling, writing small chunks of CSS and checking the results, sometimes, altering styles in the Chromium Dev Tools.   After exploring different ideas I came to a visual format I was happy with, being easy to use and uncluttered. 
+
+- I then continued to develop the functionality and the styling in small increments encapsulated in separate commits.
+
+- Python was fairly new to me.   Flask Heroku, WSGI, Werkzeug and Jinja etc. wer completely new to me apart from running through the example projects in the course videos.   So with so much to learn I found it difficult to integrate testing into my development process and adopt a TDD approach.
+
+- The upshot is that I did not write any unit tests nor any other automated tests.
+
+- However, I did test the functionality and the logic repeatedly by hand, by mental calculation, by checking that routes were working as intended and that views displayed were correct and as intended.
+
+- I also tested on two laptops, an Android phone and an Android tablet.
+
+- I have not yet tested on Windows, on IE, on Edge or on a Mac/iPhone/Safari setup.
+
+- At each stage I tried to break the application.  
+
+- At the time of writing I still have an issue with responsiveness, i.e. I seem to have a failure of my media query for small phones, so on such devices the buttons and text characters are too small (though the user is free to pinch-zoom).   I need to debug this.
 
 ## Deployment to Heroku
 
@@ -171,14 +217,10 @@ Consulted my notes.
 ```
 22:24 /arith: 2061$ heroku ps:scale web=1
 Scaling dynos... done, now running web at 1:Free
-00:16 /arith: 2062$ 
+
 ```
 Updated run.py to get IP & PORT.
 
 App then basically working, served from Heroku.
 
-I then continued to develop the functionality, till I was displaying user statistics for all users and having factored out some of the HTML using Jinja templating and using Python code and expressions in mark.html to show the "Leaderboard".
-
-Now some styling.
-
- 
+For security, I altered run.py to set debug=False and used `os.getenv()` to get a Flask `app.secret_key`
