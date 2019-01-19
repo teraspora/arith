@@ -92,6 +92,7 @@ tr:first-child {
 }
 
 .footer {
+    position: relative;
     bottom: 0;
 }
 
