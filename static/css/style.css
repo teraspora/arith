@@ -70,6 +70,12 @@ body, html {
     text-align: center;
 }
 
+.problems {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
 .problems > h1 {
     font-weight: bold;
 }
@@ -103,6 +109,7 @@ tr:first-child {
     grid-gap: 2vw;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
+    align-items: center;
 }
 
 .btn {
@@ -130,7 +137,6 @@ tr:first-child {
 
 #btn-next {
     color: var(--go-col);
-    float: right;
 }
 
 #btn-logout {
