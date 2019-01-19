@@ -121,6 +121,7 @@ tr:first-child {
 
 #btn-next {
     color: var(--go-col);
+    float: right;
 }
 
 #btn-logout {
