@@ -113,7 +113,8 @@ def mark(): # Inform the user whether they're correct and display scores
             percent = f'Your rating is {percentCorrect}%.',
             leader_text = text + f'{formatter % leader_percentage}%.',
             user_list = users_sorted)
-
+    else:
+        return redirect(url_for("index"))
 # app.run(host=os.getenv('IP'), port=int(os.getenv('PORT', 5000)), debug=True)
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP', "0.0.0.0"),
