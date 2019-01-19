@@ -54,10 +54,13 @@ body, html {
     padding: 1vh 1vw;
 }
 
+.sum, .name {
+    border: 5px ridge var(--bright-border-col);    
+}
+
 .problem {
     display: inline-block;
     text-align: center;
-    border: 5px ridge var(--bright-border-col);
 }
 
 h1 {
