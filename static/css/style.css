@@ -70,6 +70,10 @@ body, html {
     text-align: center;
 }
 
+.problems > h1 {
+    font-weight: bold;
+}
+
 h1 {
     font-size: 2.8vmax;
 }
@@ -133,15 +137,19 @@ tr:first-child {
     color: var(--stop-col);
 }
 
-@media screen and (max-width: 767px) {
+@media only screen and (max-width: 767px) {
 
     .feedback, .scoreboard, .scoreboard * {
         font-size: 3vw;
         align-self: start;
     }
 
-    .btn {
-        width: 80vmin;
+    .login-form {
+        justify-self: stretch;
+    }
+
+    .btn, .name {
+        width: 100%;
         height: auto;
         font-size: 3vw;
     }
