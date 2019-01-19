@@ -39,6 +39,10 @@ body, html {
     padding: 1vh 1vw;
 }
 
+.scoreboard * {
+    padding: 1vw;
+}
+
 .sum, .answer, .name {
     font-size: 3vw;
     background-color: var(--btn-col);
