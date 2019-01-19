@@ -92,7 +92,7 @@ tr:first-child {
 }
 
 .btn:hover {
-    transform: scale(1.04);
+    transform: scale(1.02);
     filter: invert(100%);   /* switch black & white text */
     border: 2px solid var(--btn-col);  
 }
