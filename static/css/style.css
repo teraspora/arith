@@ -74,10 +74,17 @@ h1 {
     font-size: 2.8vmax;
 }
 
+h2 {
+    font-size: 2.2vmax;
+}
+
+h1, h2 {
+    font-weight: normal;
+}
+ 
 tr:first-child {
     color: var(--bright-border-col);
 }
-
 
 .btn {
     font-size: 1.4vw;
