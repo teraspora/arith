@@ -87,7 +87,11 @@ h1, h2 {
 #result {
     color: var(--medium-light-text-col);
 }
- 
+
+tr {
+    color: var(--medium-light-text-col);
+} 
+
 tr:first-child {
     color: var(--bright-border-col);
 }
