@@ -38,7 +38,12 @@ body, html {
     padding: 1vh 1vw;
 }
 
-
+.sum {
+    font-size: 1vw;
+    background-color: var(--btn-col);
+    color: var(--light-text-col);
+    padding: 1vh 1vw;
+}
 
 
 
@@ -48,7 +53,7 @@ body, html {
 
 
 .btn {
-    font-size: 2vw;
+    font-size: 1.4vw;
     background-color: var(--btn-col);
     color: var(--light-text-col);
     width: 20vw;
