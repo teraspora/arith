@@ -77,7 +77,7 @@ I did not have a clear idea of how I wanted the app to look, so I just started s
 
 - The upshot is that I did not write any unit tests nor any other automated tests.
 
-- However, I did test the functionality and the logic repeatedly by hand, by mental calculation, by checking that routes were working as intended and that views displayed were correct and as intended.
+- However, I did test the functionality and the logic repeatedly by hand, by mental calculation, by checking that routes were working as intended and that views displayed were correct and as intended.   And given the simplicity of the logic and of the user interface, there is really very little to test.
 
 - I also tested on two laptops, an Android phone and an Android tablet.
 
