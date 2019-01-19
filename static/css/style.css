@@ -34,7 +34,7 @@ body, html {
     align-content: space-around;
 }
 
-.feedback, .scoreboard {
+.feedback, .scoreboard, .footer {
     font-size: 2.0vw;
     background-color: var(--btn-col);
     color: var(--light-text-col);
@@ -91,3 +91,55 @@ tr:first-child {
     border: 2px solid var(--btn-col);  
 }
 
+/*
+Font Awesome styling for social icons:
+*/
+/* social media links in footer */
+.social-icon {
+    color: #fff;
+}
+ul.social-icons {
+    margin-top: 1vh;
+}
+.social-icons li {
+    vertical-align: top;
+    display: inline;
+}
+.social-icons a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.fa, .icon {
+    display: inline;
+    padding: 2px 2px;
+    background-color: var(--bg-col);
+}
+.fa-twitter:hover {
+    background-color: #00B6F1;
+    -webkit-transition: 0.6s;
+    -o-transition: 0.6s;
+    transition: 0.6s;    
+}
+.fa-github:hover {
+    color: #9840d9;
+    -webkit-transition: 0.6s;
+    -o-transition: 0.6s;
+    transition: 0.6s;    
+}
+.fa-linkedin:hover {
+    background-color: #04669A;
+    -webkit-transition: 0.6s;
+    -o-transition: 0.6s;
+    transition: 0.6s;    
+}
+.icon-st:hover {
+    background-color: #f321b7;
+    -webkit-transition: 0.6s;
+    -o-transition: 0.6s;
+    transition: 0.6s;
+}
+.icon-st img {
+    height: 2vw;
+    max-width: 100%;    
+}
