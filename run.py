@@ -96,11 +96,11 @@ def mark(): # Inform the user whether they're correct and display scores
 
         text = leaders[0].name
         if len(leaders) > 1:
-            for vin in leaders:
+            for vin in leaders[1:]:
                 text += f' and {vin.name} '
             text += "are leading with "
         else:
-            text += " is leading with"
+            text += " is leading with "
 
         return render_template("mark.html",
             result = f'{ua} is {"" if correct else "in"}correct, {users[userid].name}.',
