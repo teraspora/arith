@@ -48,7 +48,6 @@ body, html {
 
 .scoreboard * {
     padding: 1vw;
-    align-self: ;
 }
 
 .feedback {
@@ -135,7 +134,13 @@ tr:first-child {
 }
 
 @media screen and (max-width: 767px) and (orientation:portrait) {
-    .feedback, .scoreboard {
+
+    .feedback, .scoreboard, .scoreboard * {
         font-size: 3vw;
+        align-self: start;
+    }
+
+    .btn {
+        height: 3vh;
     }
 }
