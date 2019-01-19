@@ -88,13 +88,11 @@ def mark(): # Inform the user whether they're correct and display scores
             users[userid].qs_correct += 1 
         percentCorrect = formatter % getPercentageCorrect(users[userid])
         users_sorted = sorted(users, key=lambda u: getPercentageCorrect(u), reverse = True)
-        leaders.append(users_sorted[0])
-        leader_percentage = getPercentageCorrect(leaders[0])
+        leader_percentage = getPercentageCorrect(users_sorted[0])
         # Check for multiple leaders
-        for i in range(1, len(users) - 1):
-            if getPercentageCorrect(users[i]) < leader_percentage:
-                break;
-            leaders.append(users[i])
+        for user in users_sorted:
+            if getPercentageCorrect(user) == leader_percentage:
+                leaders.append(user)        
 
         text = leaders[0].name
         if len(leaders) > 1:
