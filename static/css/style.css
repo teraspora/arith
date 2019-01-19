@@ -34,10 +34,11 @@ body, html {
     justify-items: center;
     align-items: center;
     justify-content: space-around;
-    align-content: space-around;
+    align-content: start;
 }
 
-.feedback, .scoreboard, .footer {
+.feedback, .scoreboard {
+    align-self: start;
     font-size: 2.0vw;
     background-color: var(--btn-col);
     color: var(--light-text-col);
@@ -48,6 +49,7 @@ body, html {
 
 .scoreboard * {
     padding: 1vw;
+    align-self: ;
 }
 
 .feedback {
