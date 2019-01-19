@@ -32,7 +32,10 @@ body, html {
 }
 
 .scoreboard {
-
+    font-size: 1vw;
+    background-color: var(--btn-col);
+    color: var(--light-text-col);
+    padding: 1vh 1vw;
 }
 
 
@@ -45,10 +48,10 @@ body, html {
 
 
 .btn {
-    font-size: 1vw;
+    font-size: 2vw;
     background-color: var(--btn-col);
     color: var(--light-text-col);
-    width: 10vw;
+    width: 20vw;
     height: auto;
     padding: 3px 3px;
     text-align: center;
@@ -64,6 +67,6 @@ body, html {
 .btn:hover {
     transform: scale(1.04);
     filter: invert(100%);   /* switch black & white text */
-    border: 2px solid white;  
+    border: 2px solid var(--btn-col);  
 }
 
