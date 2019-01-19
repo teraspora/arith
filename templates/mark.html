@@ -9,23 +9,32 @@
 {% endblock %}
 
 {% block content %}
-   <h1>{{ result }}</h1>
-   <h1>{{ feedback }}</h1>
-   <h2>{{ score }}</h2>
-   <h2>{{ percent }}</h2>
-   <h2>{{ leader_text }}</h2>
-   <form action="/problems" method="GET">
-       <input class="btn" autofocus type="submit" name = "submit_button" value="Next problem"/>
-       <input class="btn" type="submit" name = "logout_button" value="Log out"/>
-   </form>
-   <table border = 5>
-       {% for user in user_list %}
-          <tr>
-             <th> {{ user.name }} </th>
-             <td> {{ user.qs_total }} </td>
-             <td> {{ user.qs_correct }} </td>
-             <td> {{ formatter % getPercentageCorrect(user) }} {{ '%' }} </td>
-          </tr>
-       {% endfor %}
-    </table>
+   <main class="main">
+    
+    <section class="feedback">
+       <h1>{{ result }}</h1>
+       <h1>{{ feedback }}</h1>
+       <h2>{{ score }}</h2>
+       <h2>{{ percent }}</h2>
+       <h2>{{ leader_text }}</h2>
+       <form action="/problems" method="GET">
+         <input class="btn" autofocus type="submit" name = "submit_button" value="Next problem"/>
+         <input class="btn" type="submit" name = "logout_button" value="Log out"/>
+       </form>     
+    </section>
+
+    <aside class="scoreboard">
+      <table border = 5>
+         {% for user in user_list %}
+            <tr>
+               <th> {{ user.name }} </th>
+               <td> {{ user.qs_total }} </td>
+               <td> {{ user.qs_correct }} </td>
+               <td> {{ formatter % getPercentageCorrect(user) }} {{ '%' }} </td>
+            </tr>
+         {% endfor %}
+      </table>
+    </aside>
+
+   </main>
 {% endblock %}
