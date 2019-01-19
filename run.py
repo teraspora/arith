@@ -6,7 +6,7 @@ from random import seed, randint
 # import json
 
 app = Flask(__name__)
-app.secret_key = '12676506002A2822HOD940149670../"^$CCC320537618446744074370f95g51616'
+app.secret_key = os.getenv("SECRET", "12676506002A2822HOD940149670../")
 ops = [('+', add), ('-', sub), ('x', mul), ('/', truediv)]
 users = []    # keep a list of known users
 user = ''
@@ -116,6 +116,6 @@ def mark(): # Inform the user whether they're correct and display scores
 
 # app.run(host=os.getenv('IP'), port=int(os.getenv('PORT', 5000)), debug=True)
 if __name__ == '__main__':
-    app.run(host=os.environ.get('IP'),
-            port=int(os.environ.get('PORT')),
-            debug=True)
+    app.run(host=os.environ.get('IP', "0.0.0.0"),
+            port=int(os.environ.get('PORT', "5000")),
+            debug=False)
