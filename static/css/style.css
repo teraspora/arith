@@ -3,8 +3,8 @@
     border-radius: 0.5vw;
     text-decoration: none;
     --light-text-col: #fff6e5;
-    --bkg-col: #440025;
-    --btn-col: #090f32;
+    --bkg-col: #1a000e;
+    --btn-col: #000314;
 }
 
 body, html {
@@ -38,14 +38,12 @@ body, html {
     padding: 1vh 1vw;
 }
 
-.sum {
+.sum, .answer {
     font-size: 3vw;
     background-color: var(--btn-col);
     color: var(--light-text-col);
     padding: 1vh 1vw;
 }
-
-
 
 
 
