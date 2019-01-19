@@ -9,7 +9,6 @@ app = Flask(__name__)
 app.secret_key = '12676506002A2822HOD940149670../"^$CCC320537618446744074370f95g51616'
 ops = [('+', add), ('-', sub), ('x', mul), ('/', truediv)]
 users = []    # keep a list of known users
-leaders = []
 user = ''
 userid = -1
 operand_upper_bound = 100
@@ -78,6 +77,7 @@ def ask_qs():
 def mark(): # Inform the user whether they're correct and display scores
     if request.method == "POST":
         formatter = '%.2f'
+        leaders = []
         ua = request.form["user_answer"]
         answer = session.get("answer", None)
         userid = session.get("userid", None)
@@ -96,7 +96,7 @@ def mark(): # Inform the user whether they're correct and display scores
 
         text = leaders[0].name
         if len(leaders) > 1:
-            for vin in leaders[1:]:
+            for vin in leaders:
                 text += f' and {vin.name} '
             text += "are leading with "
         else:
