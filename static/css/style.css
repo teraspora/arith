@@ -8,7 +8,7 @@
     --h1-col: #5dbfff;
     --dark-bkg-col: #00162c;
     --bright-border-col: #e99536;
-    --go-col: #00b3b7;
+    --go-col: #008b6b;
     --stop-col: #eda2ab;
     --medium-light-text-col: #00d9de;
 }
@@ -81,6 +81,10 @@ h2 {
 h1, h2 {
     font-weight: normal;
 }
+
+#result {
+    color: var(--bright-border-col);
+}
  
 tr:first-child {
     color: var(--bright-border-col);
@@ -104,7 +108,7 @@ tr:first-child {
 }
 
 .btn:hover {
-    transform: scale(1.02);
+    transform: scale(1.01);
     filter: invert(100%);   /* switch black & white text */
     border: 2px solid var(--btn-col);  
 }
