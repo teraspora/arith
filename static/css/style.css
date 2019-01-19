@@ -33,13 +33,13 @@ body, html {
 }
 
 .scoreboard {
-    font-size: 1vw;
+    font-size: 2.0vw;
     background-color: var(--btn-col);
     color: var(--light-text-col);
     padding: 1vh 1vw;
 }
 
-.sum, .answer {
+.sum, .answer, .name {
     font-size: 3vw;
     background-color: var(--btn-col);
     color: var(--light-text-col);
