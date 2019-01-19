@@ -129,10 +129,13 @@ tr:first-child {
     border-radius: 5px;
 }
 
-.btn:hover, .btn:focus {
+.btn:hover {
     transform: scale(1.01);
     filter: invert(100%);   /* switch black & white text */
     border: 2px solid var(--btn-col);  
+}
+.btn:focus {
+    transform: scale(1.01);
 }
 
 #btn-next {
