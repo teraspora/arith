@@ -206,6 +206,7 @@ tr:first-child {
     }
 
     .btn, .name {
+        background-color: red;
         width: 80vmin;
         height: 20vmin;
         padding: 3px 3px;
