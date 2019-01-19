@@ -30,12 +30,7 @@ body, html {
     border: 5px inset var(--h1-col);
 }
 
-.feedback {
-    background-color: var(--bkg-col);
-    
-}
-
-.scoreboard {
+.feedback .scoreboard {
     font-size: 2.0vw;
     background-color: var(--btn-col);
     color: var(--light-text-col);
