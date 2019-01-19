@@ -11,7 +11,10 @@
 {% block content %}
    <h1>Hello {{ uname }}, this is Arith!   Test your arithmetic!</h1>
 		<form action="/mark" method="POST">
-		  {{ x }} {{ op }} {{ y }} = <input autofocus type="number" name="user_answer"/>
+		  <section class="sum">
+		  	{{ x }} {{ op }} {{ y }} = <input autofocus type="number" name="user_answer"/>
+		  
+		  </section>
 		  <input class="btn" type="submit" value="Check your answer"/>
 		</form>
 {% endblock %}
