@@ -65,7 +65,7 @@ We use an <input> element on the page for the user to type in their answer.  The
 
 - Next, I coded the basic functionality and templates incrementally, until sufficient core functionality and views were implemented and appeared to be working OK.   As I am not as experienced or as fluent in Python as in Java or Javascript, I was constantly on [Stack Overflow](www.stackoverflow.com), <https://www.tutorialspoint.com/flask/flask_quick_guide.htm> and other such sites looking for Pythonic and Flaskian ways of doing things!
 
-- Small changes were contained in separate commits with informative explanatory messages as far as I could manage in order to maintain a clear and detailed version control history.
+- Small changes were contained in separate commits with informative explanatory messages as far as I could manage in order to maintain a clear and detailed version control history at the [Github repo]()
 
 - Then, prior to styling and testing , I deployed the app to Heroku as documented hereunder.
 
@@ -224,3 +224,5 @@ Updated run.py to get IP & PORT.
 App then basically working, served from Heroku.
 
 For security, I altered run.py to set debug=False and used `os.getenv()` to get a Flask `app.secret_key`
+
+The main repo is hosted at https://github.com/teraspora/arith and the app is deployed to https://arith.herokuapp.com.
