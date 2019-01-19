@@ -23,10 +23,10 @@ body, html {
     padding: 1vh 1vw;
 }
 
-.grid {
+.main {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(768px, 1fr));
+    grid-template-rows: 1fr 1fr;
     grid-gap: 2vmax;
 }
 
@@ -35,6 +35,7 @@ body, html {
     background-color: var(--btn-col);
     color: var(--light-text-col);
     padding: 2vh 2vw;
+    margin: 2vh 2vw;
     border: 5px ridge var(--bright-border-col);
 }
 
@@ -58,7 +59,9 @@ h1 {
     font-size: 2.8vmax;
 }
 
-
+tr:first-child {
+    color: var(--bright-border-col);
+}
 
 
 .btn {
