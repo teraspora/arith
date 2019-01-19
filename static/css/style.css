@@ -10,6 +10,7 @@
     --bright-border-col: #e99536;
     --go-col: #00b3b7;
     --stop-col: #eda2ab;
+    --medium-light-text-col: #00d9de;
 }
 
 body, html {
@@ -47,6 +48,10 @@ body, html {
 
 .scoreboard * {
     padding: 1vw;
+}
+
+.feedback {
+    color: var(--medium-light-text-col);
 }
 
 .sum, .answer, .name {
