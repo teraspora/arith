@@ -41,6 +41,9 @@ def ask_qs():
         return redirect(url_for("index"))        
         
     if request.method == "POST":
+        if not users:
+        return redirect(url_for("index"))
+    
         uname = request.form["uname"]
         userid = next((i for i, user in enumerate(users) if user.name == uname), -1)
         
@@ -75,6 +78,8 @@ def ask_qs():
 
 @app.route("/mark", methods = ["GET", "POST"])
 def mark(): # Inform the user whether they're correct and display scores
+    if not users:
+        return redirect(url_for("index"))
     if request.method == "POST":
         formatter = '%.2f'
         leaders = []
