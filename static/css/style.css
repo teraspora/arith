@@ -155,8 +155,9 @@ tr:first-child {
     }
 
     .btn, .name {
-        width: 100%;
-        height: auto;
-        font-size: 3vw;
+        width: 80vmin;
+        height: 20vmin;
+        padding: 3px 3px;
+        font-size: 6vw;            
     }
 }
