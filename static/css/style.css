@@ -206,8 +206,8 @@ tr:first-child {
     }
 
     .btn, .name {
-        width: 30vmin;
-        height: 20vmin;
+        width: 50vmin;
+        height: 40vmin;
         padding: 3px 3px;
         font-size: 6vw;            
     }
