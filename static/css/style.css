@@ -96,7 +96,7 @@ tr:first-child {
     color: var(--bright-border-col);
 }
 
-#btn-holder {
+.btn-holder {
     display: grid;
     grid-gap: 2vw;
     grid-template-columns: 1fr 1fr;
