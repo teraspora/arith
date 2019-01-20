@@ -10,10 +10,12 @@
 
 {% block content %}
     <section class="problems">
-	    <header>
-	    	Hello {{ uname }}, this is Arith!   Test your mental arithmetic!
-	    </header>
-		<form class="problem" action="/mark" method="POST">
+	    <h1>
+	    	<header>
+	    		Hello {{ uname }}, this is Arith!   Test your mental arithmetic!
+	    	</header>	    	
+	    </h1>
+	    <form class="problem" action="/mark" method="POST">
 			<section class="sum">
 			 	
 			 	{{ x }} {{ op }} {{ y }} = <input class="answer" autofocus type="number" name="user_answer"/>
