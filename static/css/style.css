@@ -169,6 +169,22 @@ tr:first-child {
     border-radius: 5px;
 }
 
+header { {
+    font-size: 2.4vw;
+    background-color: var(--btn-col);
+    color: var(--bright-border-col);
+    padding: 3px 3px;
+    text-align: center;
+    font-weight: bold;
+    -webkit-box-shadow: 0 0 1px 1px;
+            box-shadow: 0 0 1px 1px;
+    margin: 1px 1px 1px 1px;
+    border: 4px groove var(--light-text-col);
+    border-radius: 5px;
+}
+
+}
+
 .btn:hover {
     -webkit-transform: scale(1.01);
         -ms-transform: scale(1.01);
