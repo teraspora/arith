@@ -2,6 +2,10 @@ from flask import Flask, redirect, render_template, request, url_for, session
 from operator import add, sub, mul, truediv
 import os
 from random import seed, randint
+
+# For testing:
+from byotest import *
+
 # from datetime import datetime
 # import json
 
