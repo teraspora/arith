@@ -212,8 +212,11 @@ header {
     color: var(--stop-col);
 }
 
-/*@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 767px) {
 
+    .grid {
+        margin-top: 5vh;
+    }
     .feedback, .scoreboard, .scoreboard * {
         font-size: 3vw;
         -ms-flex-item-align: start;
@@ -232,4 +235,4 @@ header {
         padding: 3px 3px;
         font-size: 6vw;            
     }
-}*/
+}
