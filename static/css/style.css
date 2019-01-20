@@ -1,7 +1,6 @@
 * {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-    border-radius: 0.5vw;
     text-decoration: none;
     --light-text-col: #ffddbb;
     --bkg-col: #98c4ff;
@@ -69,7 +68,7 @@ body, html {
 }
 
 .sum, .name {
-    border: 5px ridge var(--bright-border-col);    
+    border: 8px ridge var(--bright-border-col);    
 }
 
 .problem {
@@ -165,22 +164,24 @@ tr:first-child {
     -o-transition: transform 0.5s;
     transition: transform 0.5s;
     transition: transform 0.5s, -webkit-transform 0.5s;
-    border: 4px groove var(--light-text-col);
+    border: 6px groove var(--light-text-col);
     border-radius: 5px;
 }
 
-header { {
-    font-size: 2.4vw;
-    background-color: var(--btn-col);
-    color: var(--bright-border-col);
-    padding: 3px 3px;
+header {
+    font-size: 3.4vw;
+    background-color: var(--bright-border-col);
+    color: var(--btn-col);
+    max-width: 100%;
+    height: auto;
+    padding: 3vw 3vw;
     text-align: center;
     font-weight: bold;
     -webkit-box-shadow: 0 0 1px 1px;
             box-shadow: 0 0 1px 1px;
-    margin: 1px 1px 1px 1px;
-    border: 4px groove var(--light-text-col);
-    border-radius: 5px;
+    margin: 1vw 1vw 1vw 1vw;
+    border: 1vw groove var(--btn-col);
+    border-radius: 20px;
 }
 
 }
@@ -211,7 +212,7 @@ header { {
     color: var(--stop-col);
 }
 
-@media only screen and (max-width: 767px) {
+/*@media only screen and (max-width: 767px) {
 
     .feedback, .scoreboard, .scoreboard * {
         font-size: 3vw;
@@ -231,4 +232,4 @@ header { {
         padding: 3px 3px;
         font-size: 6vw;            
     }
-}
+}*/
