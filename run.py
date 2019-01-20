@@ -26,7 +26,7 @@ class User:
         self.qs_correct = 0
 
 def getPercentageCorrect(user):
-    return 100 if user.qs_total == 0 else user.qs_correct / user.qs_total * 100
+    return 0 if user.qs_total == 0 else user.qs_correct / user.qs_total * 100
 
 app.jinja_env.globals.update(getPercentageCorrect = getPercentageCorrect, formatter = formatter)
 
