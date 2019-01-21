@@ -1,7 +1,15 @@
+## Program name:  Arith
+## Description: Game to practise mental arithmetic, 
+##   developed as "Practical Python" project for the Code Institute Software Development course
+## Author: John Lynch
+## Date live: January 2019
+
 from flask import Flask, redirect, render_template, request, url_for, session
 from operator import add, sub, mul, truediv
 import os
 from random import seed, randint
+
+import sys
 
 # For testing:
 from byotest import *
@@ -30,8 +38,10 @@ class User:
         self.qs_correct = 0
 
 def getPercentageCorrect(user):
+    """ Given a user, calculate her/his percentage of correctly answered problems."""
     return 0 if user.qs_total == 0 else user.qs_correct / user.qs_total * 100
 
+# so we can use this function and variable in template
 app.jinja_env.globals.update(getPercentageCorrect = getPercentageCorrect, formatter = formatter)
 
 @app.route("/")
@@ -40,12 +50,13 @@ def index():
 
 @app.route("/problems", methods = ["GET", "POST"]) 
 def ask_qs():
+    
     if request.method == "GET" and (request.args.get("logout_button")  or session.get("userid", None) is None):
         session["userid"] = -1
         return redirect(url_for("index"))        
         
     if request.method == "POST":
-        
+        print(dict(request.form), file=sys.stdout)
         uname = request.form["uname"]
         userid = next((i for i, user in enumerate(users) if user.name == uname), -1)
         
@@ -61,8 +72,7 @@ def ask_qs():
     # if coming from "Next problem" button in mark.html:
     userid = session.get("userid", None)
     user = users[userid]
-                
-    # Handle GET method, when coming from mark.html > Next Problem button
+               
     # Here calculate values and operation;
     term1 = randint(2, operand_upper_bound)
     term2 = randint(2, operand_upper_bound)
@@ -81,6 +91,8 @@ def ask_qs():
 @app.route("/mark", methods = ["GET", "POST"])
 def mark(): # Inform the user whether they're correct and display scores
     
+    test_is_in("test_user", (u.name for u in users))
+
     if request.method == "POST":
         formatter = '%.2f'
         leaders = []
@@ -90,7 +102,8 @@ def mark(): # Inform the user whether they're correct and display scores
         if userid is None:
             return redirect(url_for("index"))
         users[userid].qs_total += 1
-        correct = False            
+        correct = False
+        # Record whether user has correct answer and update user info:            
         if ua == answer:
             correct = True
             users[userid].qs_correct += 1 
@@ -103,12 +116,12 @@ def mark(): # Inform the user whether they're correct and display scores
                 leaders.append(user)        
 
         text = leaders[0].name
-        if len(leaders) > 1:
+        if len(leaders) > 1:    # get the grammar right!
             for vin in leaders[1:]:
                 text += f' and {vin.name} '
             text += "are leading with "
         else:
-            text += " is leading with "
+            text += " is leading with " # leading space as single leader will have no trailing space
 
         return render_template("mark.html",
             result = f'{ua} is {"" if correct else "in"}correct, {users[userid].name}.',
@@ -119,7 +132,7 @@ def mark(): # Inform the user whether they're correct and display scores
             user_list = users_sorted)
     else:
         return redirect(url_for("index"))
-# app.run(host=os.getenv('IP'), port=int(os.getenv('PORT', 5000)), debug=True)
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP', "0.0.0.0"),
             port=int(os.environ.get('PORT', "5000")),
