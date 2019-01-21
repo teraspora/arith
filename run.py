@@ -91,8 +91,6 @@ def ask_qs():
 @app.route("/mark", methods = ["GET", "POST"])
 def mark(): # Inform the user whether they're correct and display scores
     
-    test_is_in("test_user", (u.name for u in users))
-
     if request.method == "POST":
         formatter = '%.2f'
         leaders = []
