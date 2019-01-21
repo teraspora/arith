@@ -11,10 +11,14 @@ Of course a user can cheat in many ways from pen and paper to Google, but I'm un
 ## Features
 
 The user is initially greeted by a simple login page where s/he enters her/his name and clicks a Login button or presses `Enter`.
+![](assets/screenshot-login.png)
 
 S/he is then taken to a page with an arithmetical sum to be solved.   The user enters the answer in a box and clicks "Check" or presses `Enter`.
+![](assets/screenshot-problem.png)
+
 
 They are then taken to a page where they are congratulated or commiserated with, depending on whether their answer was correct.   Personal statistics are shown and the leaderboard is displayed to the user, showing all users who have been logged on to the current server instance along with their scores and percentage ratings.   The user is informed of the name/s of the leader/s, determined by percentage correct out of questions answered.
+![](assets/screenshot-stats.png)
 
 At this point the user may click the "Next Problem" button, and this button is very slightly scaled up in size in order to subtly encourage the user do do just that.
 
@@ -29,6 +33,8 @@ Overall the interface is completely intuitive and the user should need no guidan
 - A header and footer with my social media links, website and contact details.
 
 - Display each sum on a face of a cube seen in 3d and in perspective.   Transition to a new sum by rotation to another face.   I think this is all doable in CSS without any Javascript.   I have made a rotating cube with text on so should be able to integrate this into the current app but for now I am keeping it simple as that is part of its attraction.
+
+- Possibly set the user against the clock as an option. This would need Javascript to track client time.
 
 ## Technologies Used
 
@@ -59,7 +65,7 @@ We define a range for the operands (2 to n), fixed at present to (2, 100).
 
 We use an <input> element on the page for the user to type in their answer.  They will then be congratulated or commiserated with and subsequently will proceed to attempting to answer the next randomly-generated arithmetic problem.   Their score and relative standing will be updated.
 
-## Design, Development & Testing
+## Design, Development
 
 - First, I conceived the basic idea of randomly generated arithmetical problems as seeming to fulfil the project requirements.
 
@@ -73,6 +79,8 @@ I did not have a clear idea of how I wanted the app to look, so I just started s
 
 - I then continued to develop the functionality and the styling in small increments encapsulated in separate commits.
 
+## Testing
+
 - Python was fairly new to me.   Flask Heroku, WSGI, Werkzeug and Jinja etc. wer completely new to me apart from running through the example projects in the course videos.   So with so much to learn I found it difficult to integrate testing into my development process and adopt a TDD approach.
 
 - The upshot is that I did not write any unit tests nor any other automated tests.
@@ -85,7 +93,189 @@ I did not have a clear idea of how I wanted the app to look, so I just started s
 
 - At each stage I tried to break the application.  
 
-- At the time of writing I still have an issue with responsiveness, i.e. I seem to have a failure of my media query for small phones, so on such devices the buttons and text characters are too small (though the user is free to pinch-zoom).   I need to debug this.
+- Then, following Matt Rudge's Code Institute lectures...
+
+Created byotest.py:
+
+```
+def f(object):
+	return 0
+
+def test_equal(actual, expected):
+	assert expected  == actual, f'Expected {expected}, actual value returned was {actual}.'
+
+test_equal(f(0),0)
+```
+
+Added another method:
+
+```
+def test_is_in(object, collection):
+	assert object in collection, f'Expected {object} to be in {collection}, but it is not.'
+```
+Tested this with 
+
+I am thinking about what I can test for and how I can cover as much of my code as possible with tests, ideally 100%.
+
+### Things to test for
+
+- The login functionality works: a `userid` session object is created and the user is taken to problems.html
+- The logout functionality works: a `userid` session object is destroyed and the user is taken to index.html
+- For any user, the user object should be in the list of users
+- If the user's answer is equal to the correct answer, the user's score should increase by one
+
+### Expanded byotest.py to:
+
+```
+# Beginnings of Python/Flask testing framework
+# John Lynch
+# January 2019
+
+def f(object):
+	return 0
+
+arr = [2, 3, 5, 7, 11, 13, 17, 19]
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+def test_equal(actual, expected):
+	assert expected  == actual, f'Expected {expected}, actual value returned was {actual}.'
+
+def test_is_in(object, collection):
+	assert object in collection, f'Expected {object} to be in {collection}, but it is not.'
+
+def test_exists_as_session_object(obj):
+	assert session.get("obj", False), f'{obj} is not currently saved as a session object.'
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+test_equal(f(0),0)	# should pass
+
+test_equal(f(1),1)	# should fail
+
+test_is_in(7, arr)	# should pass
+
+test_is_in(256, arr)	# should fail
+
+test_exists_as_session_object(x) # should fail
+
+session["x"] = 0
+
+test_exists_as_session_object(x) # should pass
+
+# 3 tests should fail out of 7
+```
+```
+18:44 /arith: 2445$ git add testing.log byotest.py 
+18:45 /arith: 2446$ git commit -m "Begin to create testing framework with byotest.py"
+[master c8cde94] Begin to create testing framework with byotest.py
+ 2 files changed, 21 insertions(+)
+ create mode 100644 byotest.py
+ create mode 100644 testing.log
+18:45 /arith: 2447$ python3 byotest.py 
+19:09 /arith: 2448$ python3 byotest.py 
+Traceback (most recent call last):
+  File "byotest.py", line 14, in <module>
+    test_is_in(8, arr)
+  File "byotest.py", line 10, in test_is_in
+    assert object in collection, f'Expected {object} to be in {collection}, but it is not.'
+AssertionError: Expected 8 to be in [2, 3, 5, 7, 11, 13, 17, 19], but it is not.
+19:09 /arith: 2448$ python3 byotest.py 
+Traceback (most recent call last):
+  File "byotest.py", line 5, in <module>
+    obj = {name: "Bob", age: 30}
+NameError: name 'name' is not defined
+19:23 /arith: 2448$ python3 byotest.py 
+Traceback (most recent call last):
+  File "byotest.py", line 25, in <module>
+    test_equal(f(1),1)	# should fail
+  File "byotest.py", line 13, in test_equal
+    assert expected  == actual, f'Expected {expected}, actual value returned was {actual}.'
+AssertionError: Expected 1, actual value returned was 0.
+19:31 /arith: 2448$ python3 byotest.py 
+Traceback (most recent call last):
+  File "byotest.py", line 29, in <module>
+    test_is_in(256, arr)	# should fail
+  File "byotest.py", line 16, in test_is_in
+    assert object in collection, f'Expected {object} to be in {collection}, but it is not.'
+AssertionError: Expected 256 to be in [2, 3, 5, 7, 11, 13, 17, 19], but it is not.
+19:32 /arith: 2448$ python3 byotest.py 
+Traceback (most recent call last):
+  File "byotest.py", line 29, in <module>
+    test_is_in(256, arr)	# should fail
+  File "byotest.py", line 16, in test_is_in
+    assert object in collection, f'Expected {object} to be in {collection}, but it is not.'
+AssertionError: Expected 256 to be in [2, 3, 5, 7, 11, 13, 17, 19], but it is not.
+19:32 /arith: 2448$ python3 byotest.py 
+Traceback (most recent call last):
+  File "byotest.py", line 31, in <module>
+    test_exists_as_session_object(x) # should fail
+NameError: name 'x' is not defined
+19:32 /arith: 2448$ python3 byotest.py 
+Traceback (most recent call last):
+  File "byotest.py", line 32, in <module>
+    test_exists_as_session_object(x) # should fail
+  File "byotest.py", line 19, in test_exists_as_session_object
+    assert session.get("obj", False), f'{obj} is not currently saved as a session object.'
+NameError: name 'session' is not defined
+19:33 /arith: 2448$ python3 byotest.py 
+Traceback (most recent call last):
+  File "byotest.py", line 5, in <module>
+    from Flask import session
+ModuleNotFoundError: No module named 'Flask'
+19:34 /arith: 2448$ python3 byotest.py 
+Traceback (most recent call last):
+  File "byotest.py", line 34, in <module>
+    test_exists_as_session_object(x) # should fail
+  File "byotest.py", line 21, in test_exists_as_session_object
+    assert session.get("obj", False), f'{obj} is not currently saved as a session object.'
+  File "/usr/local/lib/python3.6/dist-packages/werkzeug/local.py", line 347, in __getattr__
+    return getattr(self._get_current_object(), name)
+  File "/usr/local/lib/python3.6/dist-packages/werkzeug/local.py", line 306, in _get_current_object
+    return self.__local()
+  File "/usr/local/lib/python3.6/dist-packages/flask/globals.py", line 37, in _lookup_req_object
+    raise RuntimeError(_request_ctx_err_msg)
+RuntimeError: Working outside of request context.
+
+This typically means that you attempted to use functionality that needed
+an active HTTP request.  Consult the documentation on testing for
+information about how to avoid this problem.
+```
+So, I need a request object to use a session object.   Wel, we'll forget about that for now.
+
+I can see how to write tests with assertions to test at least some of my code, but I need to understand how to modularise the testing...
+
+Listening again to Matt Rudge's lectures...
+
+It appears that the approach recommended is to import the test file into the main Python app and add calls to the test functions directly for testing purposes.   This does not seem ideal to me but I will go with it for now.
+
+Added test at bottom of run.py:
+
+`test_is_in("anon", users)`
+
+Result of running `run.py`:
+`AssertionError: Expected anon to be in [], but it is not.
+` 
+
+Eventually came to using `test_is_in("test_user", (u.name for u in users))
+`
+
+to test that a user had been added and that the test would fail for a user that was not in the users list:
+
+First a different username was entered and the test failed.
+Then "test_user" was entered and the test passed.
+
+This shows that loggin in adds a user to the list of users.
+
+I could attempt to cover more of the code but I am finding it hard to find sufficient documentation about creating a context which to test and easily supplying data to that dummy context in Flask.
+
+I realise I have not done enough to fully satisfy the testing requirements but at this stage I feel I have done enough to show that I understand the basics of testing by creating a basic testing framework and implementing one substantive test.
+
+And I have done more than sufficient manual testing on four different devices to convince myself that the app works as intended.
+
+So I intend to submit it as is.
+
+- At the time of writing I still have an issue with responsiveness, i.e. I seem to have a partial failure of my media query for small phones, so on such devices I would like the login box, for instance, to extend the full width of the screen (though the user is free to pinch-zoom).   I have not yet been able fully to debug this.
 
 ## Deployment to Heroku
 
@@ -226,3 +416,7 @@ App then basically working, served from Heroku.
 For security, I altered run.py to set debug=False and used `os.getenv()` to get a Flask `app.secret_key`
 
 The main repo is hosted at https://github.com/teraspora/arith and the app is deployed to https://arith.herokuapp.com.
+
+## Acknowledgements
+
+My thanks to all the great teachers who provide tutorials and lessons in a variety of formats for free.   Such a valuable cornucopia of resources to help us manipulate bits.
